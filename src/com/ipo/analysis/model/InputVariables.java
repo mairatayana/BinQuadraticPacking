@@ -5,58 +5,43 @@ import java.util.List;
 
 public class InputVariables {
 
-	private List<List<Float>> quadBenefit; //simetric matrix with benefit values, qii is the benefit of item i, qij is the benefit of having item i and j together
-	private List<Float> capacity; // size of each item
-	private Float maxCapacity; // backpack capacity
+	private float[][] quadBenefit; //simetric matrix with benefit values, qii is the benefit of item i, qij is the benefit of having item i and j together
+	private float[] capacity; // size of each item
+	private float maxCapacity; // backpack capacity
 	private int size;
 	
 	public InputVariables(int size) {
 		this.size = size;
-		this.quadBenefit = new ArrayList<>();
-		this.capacity = new ArrayList<>();
-		for (int i = 0; i < this.size; i++) {
-			this.quadBenefit.add(new ArrayList<>());
-			this.capacity.add(0f);
-			for (int j = 0; j < this.size; j++) {
-				this.quadBenefit.get(i).add(0f);
-			}
-		}
+		this.quadBenefit = new float[size][size];
+		this.capacity = new float[size];
 	}	
 	
-	public Float getQuadBenefit(int indexRow, int indexCol) {
-		checkNullRow(indexRow);
-		return this.quadBenefit.get(indexRow).get(indexCol);
+	public float getQuadBenefit(int indexRow, int indexCol) {
+		return this.quadBenefit[indexRow][indexCol];
 	}
-	public void setQuadBenefit(int indexRow, int indexCol, Float quadBenefit) {
-		checkNullRow(indexRow);
-		this.quadBenefit.get(indexRow).set(indexCol, quadBenefit);
+	public void setQuadBenefit(int indexRow, int indexCol, float quadBenefit) {
+		this.quadBenefit[indexRow][indexCol] = quadBenefit;
 	}
 	public Float getCapacity(int index) {
-		return capacity.get(index);
+		return capacity[index];
 	}
-	public void setCapacity(int index, Float capacity) {
-		this.capacity.set(index, capacity);
+	public void setCapacity(int index, float capacity) {
+		this.capacity[index] = capacity;
 	}
 	public float getMaxCapacity() {
 		return maxCapacity;
 	}
-	public void setMaxCapacity(Float maxCapacity) {
+	public void setMaxCapacity(float maxCapacity) {
 		this.maxCapacity = maxCapacity;
 	}
-	private void checkNullRow(int indexRow) {
-		if (this.quadBenefit.get(indexRow) == null) {
-			this.quadBenefit.set(indexRow, new ArrayList<>(this.size));
-		}
-	}
 	public int getCapacitySize() {
-		return this.capacity.size();
+		return this.capacity.length;
 	}
 	public int getQuadBenefitRowSize() {
-		return this.quadBenefit.size();
+		return this.quadBenefit.length;
 	}
 	public int getQuadBenefitColSizeFor(int row) {
-		checkNullRow(row);
-		return this.quadBenefit.get(row).size();
+		return this.quadBenefit[row].length;
 	}
 	
 }
