@@ -15,7 +15,7 @@ public class InputHelper {
 	public static InputVariables readAndFill(String fileName) throws IOException {
 		Path path = Paths.get(fileName);
 		InputStream inFile = Files.newInputStream(path);
-	    BufferedReader readerInFile = new BufferedReader(new InputStreamReader(inFile));
+	    BufferedReader readerInFile = new BufferedReader(new InputStreamReader(inFile));//changes test 2
 	    String line = readerInFile.readLine();
 	    System.out.println(line);
 	    line = readerInFile.readLine();
